@@ -11,5 +11,3 @@ for (let link of links) {
     link.style = css;
   }
 }
-
-// Seguir aquí (corregir css a todas las tabs, corregir reload current tab variable links)

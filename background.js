@@ -8,13 +8,22 @@ chrome.action.onClicked.addListener((tab) => {
         chrome.action.setBadgeText({tabId: tab.id, text: 'ON'});
         chrome.action.setBadgeBackgroundColor({ color: '#AAA' })
 
-        // Insert script into tab
+        // Insert script_on into tab
         chrome.scripting.executeScript({
           target: {tabId: tab.id},
-          files: ['content.js']
+          files: ['content_on.js']
         })
       } else {
         chrome.action.setBadgeText({tabId: tab.id, text: ''});
+
+        // Insert script_off into tab
+        chrome.scripting.executeScript({
+          target: {tabId: tab.id},
+          files: ['content_off.js']
+        })
       }
-    });
+  })
 });
+
+
+// Seguir aquí (cambiar scripting por tab.sendMessage, añadir IIEF en contentScript.js, eliminar content_on y content_off)
