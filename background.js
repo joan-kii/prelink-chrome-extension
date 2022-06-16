@@ -1,29 +1,22 @@
-chrome.action.onClicked.addListener((tab) => {
+chrome.tabs.onUpdated.addListener((tabId) => {
+  chrome.action.onClicked.addListener(() => {
+    
+    // Switch ChE on/off
+    chrome.action.getBadgeText({tabId})
+      .then((result) => {
+        if (!result) {
+          // Set badge
+          chrome.action.setBadgeText({tabId, text: 'ON'});
+          chrome.action.setBadgeBackgroundColor({ color: '#AAA' })
   
-  // Switch ChE on/off
-  let toggleOnOff = chrome.action.getBadgeText({tabId: tab.id})
-    .then((result) => {
-      if (!result) {
-        // Set badge
-        chrome.action.setBadgeText({tabId: tab.id, text: 'ON'});
-        chrome.action.setBadgeBackgroundColor({ color: '#AAA' })
-
-        // Insert script_on into tab
-        chrome.scripting.executeScript({
-          target: {tabId: tab.id},
-          files: ['content_on.js']
-        })
-      } else {
-        chrome.action.setBadgeText({tabId: tab.id, text: ''});
-
-        // Insert script_off into tab
-        chrome.scripting.executeScript({
-          target: {tabId: tab.id},
-          files: ['content_off.js']
-        })
-      }
-  })
+          // Insert script_on into tab
+          chrome.tabs.sendMessage(tabId, {action: 'ON', tab: tabId});
+        } else {
+          chrome.action.setBadgeText({tabId, text: ''});
+  
+          // Insert script_off into tab
+          chrome.tabs.sendMessage(tabId, {action: 'OFF', tab: tabId});
+        }
+    })
+  });
 });
-
-
-// Seguir aquí (cambiar scripting por tab.sendMessage, añadir IIEF en contentScript.js, eliminar content_on y content_off)
