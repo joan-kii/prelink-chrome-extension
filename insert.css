@@ -1,4 +1,4 @@
 .prelink {
-  outline: 2px solid #E1E346;
-  background-color: #00509d;
+  outline: 2px solid #E1E346 !important;
+  background-color: #00509d !important;
 }
