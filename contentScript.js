@@ -1,60 +1,43 @@
+// Run IIEF in current tab 
 (() => {
   
+  // Listen to messages from background
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+    // Get all links in page
     let links = document.querySelectorAll('a');
-
+    
+    // Check type of message
     if (message.action === 'ON') {
-      // Initialize tooltip
-      let certificate;
-      let site;
-      let tooltip;
-
-      // Aply css to external links
       for (let link of links) {
+
         // Get href
         const href = link.getAttribute('href');
 
         // Check external link
         if (href !== null && href.startsWith('h') && !href.includes(message.url)) {
 
-          /* // Create tooltip
-          certificate = document.createElement('h5');
-          certificate.className= 'secure';
+          // Set class to link
+          link.classList.add('prelink');
 
-          site = document.createElement('p');
-          site.className = 'site';
-
-          tooltip = document.createElement('div');
-          tooltip.className = 'prelink-tooltip';
-
-          certificate.innerHTML = href.startsWith('https') ? 
+          // Create tooltip text
+          const certificate = href.startsWith('https') ? 
             'This site has a security certificate' : 
             'This site does not have a security certificate';
           const host = new URL(href).host;
-          site.innerHTML = host;
+          const tooltipText = `Site: ${host}`;
 
-          // Add class to link
-          link.classList.add('prelink');
-
-          // Add tooltip to DOM
-          tooltip.append(certificate);
-          tooltip.append(site);
-          link.parentNode.insertBefore(tooltip, link); */
-          link.setAttribute('data-tooltip', new URL(href).host);
+          // Create data attribute in link
+          link.setAttribute('data-tooltip', tooltipText);
         }
       }
     } else if (message.action === 'OFF') {
       
-      // Remove links classes
-      let prelinks = document.querySelectorAll('.prelink');
+      // Remove links data-tooltips and classes
+      let prelinks = document.querySelectorAll('[data-tooltip]');
       for (let link of prelinks) {
+        link.removeAttribute('data-tooltip');
         link.classList.remove('prelink');
-      }
-
-      // Remove tooltips
-      let tooltips = document.querySelectorAll('.prelink-tooltip');
-      for (let tooltip of tooltips) {
-        tooltip.remove();
       }
     }
 
