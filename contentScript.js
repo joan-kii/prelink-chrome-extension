@@ -1,8 +1,25 @@
 // Run IIEF in current tab 
 (() => {
+  // Get user settings
+  const options = {
+    color: 'multicolor',
+    banner: 'hover'
+  };
+
+  chrome.storage.sync.get('options', (result) => {
+    if (!result.options) {
+      chrome.storage.sync.set({options});
+    } else {
+      Object.assign(options, result.options);
+    }
+  });
   
   // Listen to messages from background
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.storage.sync.get('options', (result) => {
+      console.log(result.options)
+      // Seguir aquí (asignar classes y data-tootips según options)
+    })
 
     // Get all links in page
     let links = document.querySelectorAll('a');

@@ -1,6 +1,6 @@
 {
   "name": "PreLink",
-  "description": "Previsualize and get info about a link clicking on it",
+  "description": "Preview and learn about a link without clicking on it",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
@@ -34,5 +34,5 @@
     }
   ],
   "options_page": "options.html",
-  "default_title": "PreLink previsualizer"
+  "default_title": "PreLink Previsualizer"
 }
