@@ -27,8 +27,16 @@
           const host = new URL(href).host;
           const tooltipText = `Site: ${host}`;
 
-          // Create data attribute in link
-          link.setAttribute('data-tooltip', tooltipText);
+          // Get browser position link (avoid header top overflow)
+          const linkX = link.offsetTop;
+
+          // // Create data attributes in link according to position
+          if (linkX < 35) {
+            link.setAttribute('data-tooltip', tooltipText);
+            link.setAttribute('data-tooltip-position', 'bottom');
+          } else {
+            link.setAttribute('data-tooltip', tooltipText);
+          }
         }
       }
     } else if (message.action === 'OFF') {

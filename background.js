@@ -11,7 +11,7 @@ chrome.action.onClicked.addListener((tabId) => {
         chrome.action.setBadgeBackgroundColor({ color: '#AAA' });
 
         // Send message ON to content script
-        chrome.tabs.sendMessage(tabId.id, {action: 'ON', tab: tabId.id, url: tabId.url});
+        chrome.tabs.sendMessage(tabId.id, {action: 'ON', tab: tabId.id, url: new URL(tabId.url).host});
       } else {
 
         // Set badge OFF

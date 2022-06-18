@@ -1,14 +1,15 @@
+/* Link class */
 .prelink {
   border-radius: 4px;
   animation: blink-animation .5s infinite alternate;
 }
-
+ /* Tooltip basics */ 
 [data-tooltip] {
   position: relative;
-  z-index: 1000;
+  z-index: 100;
 }
 
-/* Positioning and visibility settings of the tooltip */
+/* Position tooltip */
 [data-tooltip]:before,
 [data-tooltip]:after {
   position: absolute;
@@ -21,16 +22,16 @@
   will-change: transform;
 }
 
-/* The actual tooltip with a dynamic width */
+/* Tooltip content */
 [data-tooltip]:before {
   content: attr(data-tooltip);
   padding: 10px 18px;
   min-width: 50px;
   max-width: 300px;
   width: max-content;
-  width: -moz-max-content;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.2rem;
   background-color: #3C4650;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
@@ -40,18 +41,27 @@
   animation: blink-animation .5s infinite alternate;
 }
 
-/* Tooltip becomes visible at hover */
+/* Change tooltip visibility when hover */
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after {
   visibility: visible;
   opacity: 1;
 }
-/* Scales from 0.5 to 1 -> grow effect */
+
+/* Tooltip grow effect */
 [data-tooltip]:hover:before {
   transition-delay: 0.1s;
   transform: translate(-50%, -5px) scale(1);
 }
 
+/* Header tooltip position */
+[data-tooltip-position="bottom"]:before,
+[data-tooltip-position="bottom"]:after {
+  top: calc(100%);
+  bottom: auto;
+}
+
+/* Outline tooltip animation */
 @keyframes blink-animation {
   0% {
     box-shadow:0px 0px 0px 2px #e219be inset;
@@ -72,5 +82,3 @@
     box-shadow:0px 0px 0px 2px #baff00 inset;
   }
 }
-
-/* Seguir aquí (mantener tooltip dentro de la pantalla)*/ 
