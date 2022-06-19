@@ -1,8 +1,15 @@
 /* Link class */
-.prelink {
+.multicolor, .red {
   border-radius: 4px;
+}
+
+.multicolor {
   animation: blink-animation .5s infinite alternate;
 }
+.red, .red[data-tooltip]:before {
+  box-shadow:0px 0px 0px 2px #FF3232 inset;
+}
+
  /* Tooltip basics */ 
 [data-tooltip] {
   position: relative;
@@ -38,12 +45,15 @@
   color: #fff;
   text-align: center;
   transform: translate(-50%) scale(0.5);
+}
+
+.multicolor, .multicolor[data-tooltip]:before {
   animation: blink-animation .5s infinite alternate;
 }
 
 /* Change tooltip visibility when hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+.hover[data-tooltip]:hover:before,
+.hover[data-tooltip]:hover:after {
   visibility: visible;
   opacity: 1;
 }

@@ -8,10 +8,10 @@
   </head>
   <body>
 
-    <div class="container my-5 w-25">
+    <div class="container mb-2 w-75">
       <h2>PreLink settings</h2>
       <form class="d-flex flex-column">
-        <div class="mb-3">
+        <div class="mb-2">
           <label for="color" class="form-label">Choose signaling style:</label>
           <select id="color" class="form-select" aria-label="Color select">
             <option value="multicolor" selected>Multicolor</option>
@@ -24,13 +24,11 @@
           <label for="banner" class="form-label">Choose banner style:</label>
           <select id="banner" class="form-select" aria-label="Banner select">
             <option value="hover" selected>Hover</option>
-            <option value="fixed">Fixed</option>
             <option value="none">None</option>
           </select>
           <div id="bannerHelp" class="form-text">Choose the way PreLink shows you the external sites.</div>
         </div>
         <button id="save" class="btn btn-primary float-right mb-3">Save</button>
-        <div id="message" class="alert alert-success d-none" role="alert"></div>
       </form>
     </div>
 

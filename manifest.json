@@ -33,6 +33,9 @@
       "css": ["insert.css"]
     }
   ],
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "default_title": "PreLink Previsualizer"
 }
