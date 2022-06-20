@@ -1,6 +1,6 @@
 {
   "name": "PreLink",
-  "description": "Preview and learn about a link without clicking on it",
+  "description": "Preview the external links of a website without clicking on it",
   "version": "1.0",
   "manifest_version": 3,
   "background": {

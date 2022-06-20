@@ -7,18 +7,31 @@ chrome.action.onClicked.addListener((tabId) => {
       if (!result) {
 
         // Set badge ON
-        chrome.action.setBadgeText({tabId: tabId.id, text: 'ON'});
+        chrome.action.setBadgeText({
+          tabId: tabId.id, 
+          text: 'ON'
+        });
         chrome.action.setBadgeBackgroundColor({ color: '#AAA' });
 
         // Send message ON to content script
-        chrome.tabs.sendMessage(tabId.id, {action: 'ON', tab: tabId.id, url: new URL(tabId.url).host});
+        chrome.tabs.sendMessage(tabId.id, {
+          action: 'ON', 
+          tab: tabId.id, 
+          url: new URL(tabId.url).host
+        });
       } else {
 
         // Set badge OFF
-        chrome.action.setBadgeText({tabId: tabId.id, text: ''});
+        chrome.action.setBadgeText({
+          tabId: tabId.id, 
+          text: ''
+        });
 
         // Send message OFF to content script
-        chrome.tabs.sendMessage(tabId.id, {action: 'OFF', tab: tabId.id});
+        chrome.tabs.sendMessage(tabId.id, {
+          action: 'OFF', 
+          tab: tabId.id
+        });
       }
   })
 });

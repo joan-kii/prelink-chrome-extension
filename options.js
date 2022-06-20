@@ -14,6 +14,7 @@ button.addEventListener('click', (e) => {
     banner: bannerSelect
   };
 
+  // Save settings to storage and close
   chrome.storage.sync.set({options});
   close();
 });

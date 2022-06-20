@@ -1,11 +1,12 @@
 // Run IIEF in current tab 
 (() => {
-  // Get user settings
+  // Create default settings
   const options = {
     color: 'multicolor',
     banner: 'hover'
   };
 
+  // Get stored user settings or save default settings
   chrome.storage.sync.get('options', (result) => {
     if (!result.options) {
       chrome.storage.sync.set({options});
@@ -45,17 +46,14 @@
           if (options.banner === 'hover') link.classList.add('hover');
 
           // Create tooltip text
-          const certificate = href.startsWith('https') ? 
-            'This site has a security certificate' : 
-            'This site does not have a security certificate';
           const host = new URL(href).host;
           const tooltipText = `Site: ${host}`;
 
           // Get browser position link (avoid header top overflow)
           const linkX = link.offsetTop;
 
-          link.setAttribute('data-tooltip', tooltipText);
           // // Create data attributes in link according to position
+          link.setAttribute('data-tooltip', tooltipText);
           if (linkX < 35) link.setAttribute('data-tooltip-position', 'bottom');
           link.setAttribute('data-tooltip', tooltipText); 
         }
